@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ACCOUNT-REFERENCE-DATA-SERVICE
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultzone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
