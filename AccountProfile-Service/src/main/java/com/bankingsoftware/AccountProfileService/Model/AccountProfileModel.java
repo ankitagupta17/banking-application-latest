@@ -10,13 +10,8 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 public class AccountProfileModel {
-
-    public AccountProfileModel(String account_no, String pin) {
-        this.account_no = account_no;
-        this.pin = pin;
-    }
-
     @Id
     private String account_no;
     private String pin;

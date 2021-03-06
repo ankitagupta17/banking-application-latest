@@ -1,5 +1,6 @@
 package com.bankingsoftware.AccountDetailsService.resource;
 
+import com.bankingsoftware.AccountDetailsService.Exception.WrongAccountDetailsException;
 import com.bankingsoftware.AccountDetailsService.Model.AccountDetailsModel;
 import com.bankingsoftware.AccountDetailsService.service.AccountDetailsService;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -29,8 +31,14 @@ public class AccountDetailsController {
     @PostMapping("/createAccount")
     public void createAccount(@RequestBody AccountDetailsModel accountDetailsModel)
     {
-        logger.info("Create Account Controller--->");
-        accountDetailsService.addAccount(accountDetailsModel);
+        try {
+            logger.info("Create Account Controller--->");
+            accountDetailsService.addAccount(accountDetailsModel);
+        }
+        catch(Exception e)
+        {
+            throw new WrongAccountDetailsException("Please enter the correct details.");
+        }
     }
 
 }

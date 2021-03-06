@@ -28,11 +28,6 @@ public class AccountProfileService {
     public Optional<AccountProfileModel> getAccountProfile(String account_no)
     {
         logger.info("getAccountProfile Service --> Fetching User Profile Data");
-        if(accountProfileDAO.findById(account_no).isEmpty())
-        {
-
-            //return Arr"Account Not Found";
-        }
         return accountProfileDAO.findById(account_no);
     }
 
@@ -48,15 +43,9 @@ public class AccountProfileService {
 
     public void addAccount(AccountDetailsModel accountDetailsModel) {
 
-
         String acc_no = accountDetailsModel.getAccount_no();
-        AccountDetailsModel newacc = restTemplate.postForObject("http://ACCOUNT-REFERENCE-DATA-SERVICE/users/createAccount",accountDetailsModel,AccountDetailsModel.class);
-
-        //logger.info("createdAccount getAccount_no-->"+createdAccount.getAccount_no());
+        AccountProfileModel newacc = restTemplate.postForObject("http://ACCOUNT-REFERENCE-DATA-SERVICE/users/createAccount",accountDetailsModel,AccountProfileModel.class);
         logger.info("createdAccount---------------->");
-
-      //  return createdAccount.getAccount_no();
-
     }
 
     public void addProfile(String newAccount_no) {

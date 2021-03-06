@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 @NoArgsConstructor
@@ -14,6 +15,7 @@ public class AccountDetailsModel {
 
     @Id
     private String account_no;
+    @Size(min=2)
     private String firstname;
     private String lastname;
     private String email;
