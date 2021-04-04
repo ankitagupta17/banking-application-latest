@@ -5,6 +5,8 @@ import com.bankingsoftware.AccountDetailsService.service.AccountDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -27,10 +29,13 @@ public class AccountDetailsController {
 
 
     @PostMapping("/createAccount")
-    public void createAccount(@RequestBody AccountDetailsModel accountDetailsModel)
+    public ResponseEntity<String> createAccount(@RequestBody AccountDetailsModel accountDetailsModel)
     {
         logger.info("Create Account Controller--->");
         accountDetailsService.addAccount(accountDetailsModel);
+        var headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        return ResponseEntity.ok().headers(headers).body("success");
     }
 
 }
