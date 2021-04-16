@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountDetailsDAO extends JpaRepository<AccountDetailsModel,String> {
+    AccountDetailsModel findByEmail(String email);
 }

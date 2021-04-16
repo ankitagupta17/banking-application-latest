@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,14 +30,18 @@ public class AccountDetailsController {
     }
 
 
-    @PostMapping("/createAccount")
+    @PostMapping(
+            consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE },
+            produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
+    )
     public ResponseEntity<String> createAccount(@RequestBody AccountDetailsModel accountDetailsModel)
     {
         logger.info("Create Account Controller--->");
         accountDetailsService.addAccount(accountDetailsModel);
         var headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
-        return ResponseEntity.ok().headers(headers).body("success");
+//        headers.add("Content-Type", "application/json");
+//        return ResponseEntity.ok().headers(headers).body("success");
+        return ResponseEntity.status(HttpStatus.CREATED).body("success");
     }
 
 }
