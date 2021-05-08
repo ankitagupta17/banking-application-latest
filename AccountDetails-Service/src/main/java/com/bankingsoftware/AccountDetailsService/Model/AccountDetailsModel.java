@@ -1,6 +1,8 @@
 package com.bankingsoftware.AccountDetailsService.Model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,4 +20,5 @@ public class AccountDetailsModel {
     private String email;
     private long contact;
     private String password;
+    private boolean isEnabled;
 }
